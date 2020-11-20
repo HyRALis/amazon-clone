@@ -19,7 +19,7 @@ const Header = () => {
       </div>
       <div className={styles.header__nav}>
         <div className={styles.header__element}>
-          <span className={styles.header__optionLineOne}>Hello</span>
+          <span className={styles.header__optionLineOne}>Hello Guest</span>
           <span className={styles.header__optionLineTwo}>Sign In</span>
         </div>
         <div className={styles.header__element}>
