@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./styles/ProductCard.module.scss";
 
-import StarIcon from "@material-ui/icons/Star";
+import { useStateValue } from "../context/StateProvider";
+import StarRating from "./StarRating";
+import Button from "./Button";
 
 export const ProductCard = ({
   id,
@@ -11,6 +13,8 @@ export const ProductCard = ({
   price,
   rating,
 }) => {
+  const [{ basket }, dispatch] = useStateValue();
+
   return (
     <div className={styles.product}>
       <div className={styles.product__info}>
@@ -19,16 +23,20 @@ export const ProductCard = ({
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className={styles.product__rating}>
-          {Array(rating)
-            .fill()
-            .map((star, i) => (
-              <StarIcon />
-            ))}
-        </div>
+        <StarRating rating={rating} />
       </div>
       <img src={image} alt={imageDescription} />
-      <button>Add To Basket</button>
+      <Button
+        id={id}
+        title={title}
+        price={price}
+        rating={rating}
+        image={image}
+        imageDescription={imageDescription}
+        action={"ADD_TO_BASKET"}
+      >
+        Add To Basket
+      </Button>
     </div>
   );
 };

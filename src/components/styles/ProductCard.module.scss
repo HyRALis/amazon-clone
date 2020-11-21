@@ -25,6 +25,9 @@
     border-color: #a88734 #9c7e31 #846a29;
     color: #111111;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
   }
   &__info {
     height: 100px;
@@ -32,13 +35,6 @@
   }
   &__price {
     margin-top: 5px;
-    svg {
-      fill: currentColor;
-      width: 25px;
-    }
-  }
-  &__rating {
-    color: #f3a847;
     svg {
       fill: currentColor;
       width: 25px;

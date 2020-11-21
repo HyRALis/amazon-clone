@@ -1,0 +1,20 @@
+.productCard {
+  display: flex;
+  margin: 20px 0;
+  &__image {
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+  }
+  &__info {
+    max-width: calc(100% - 200px);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
