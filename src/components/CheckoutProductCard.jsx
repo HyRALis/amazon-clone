@@ -27,15 +27,7 @@ const CheckoutProductCard = ({
           <strong>{price}</strong>
         </p>
         <StarRating rating={rating} />
-        <Button
-          id={id}
-          image={image}
-          title={title}
-          rating={rating}
-          price={price}
-          imageDescription={imageDescription}
-          action={"REMOVE_FROM_BASKET"}
-        >
+        <Button id={id} action={"REMOVE_FROM_BASKET"}>
           Remove from Basket
         </Button>
       </div>
