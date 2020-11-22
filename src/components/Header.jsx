@@ -14,7 +14,7 @@ const Header = () => {
     <div className={styles.header}>
       <Link to="/">
         <img
-          src="/assets/amazon-logo.png"
+          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt="Amazon Logo"
           className={styles.header__logo}
         />
@@ -24,10 +24,12 @@ const Header = () => {
         <SearchIcon className={styles.header__searchIcon} />
       </div>
       <div className={styles.header__nav}>
-        <div className={styles.header__element}>
-          <span className={styles.header__optionLineOne}>Hello Guest</span>
-          <span className={styles.header__optionLineTwo}>Sign In</span>
-        </div>
+        <Link to="/login">
+          <div className={styles.header__element}>
+            <span className={styles.header__optionLineOne}>Hello Guest</span>
+            <span className={styles.header__optionLineTwo}>Sign In</span>
+          </div>
+        </Link>
         <div className={styles.header__element}>
           <span className={styles.header__optionLineOne}>Returns</span>
           <span className={styles.header__optionLineTwo}>& Orders</span>
