@@ -2,6 +2,7 @@ import React from "react";
 
 import styles from "./styles/CheckoutProductCard.module.scss";
 
+import { useStateValue } from "../context/StateProvider";
 import StarRating from "./StarRating";
 import Button from "./Button";
 
@@ -13,6 +14,18 @@ const CheckoutProductCard = ({
   price,
   imageDescription,
 }) => {
+  const [{ basket }, dispatch] = useStateValue();
+
+  const basketManipulation = () => {
+    const REMOVE_FROM_BASKET = "REMOVE_FROM_BASKET";
+    dispatch({
+      type: REMOVE_FROM_BASKET,
+      item: {
+        id,
+      },
+    });
+  };
+
   return (
     <div className={styles.productCard}>
       <img
@@ -27,7 +40,7 @@ const CheckoutProductCard = ({
           <strong>{price}</strong>
         </p>
         <StarRating rating={rating} />
-        <Button id={id} action={"REMOVE_FROM_BASKET"}>
+        <Button id={id} onClickAction={basketManipulation}>
           Remove from Basket
         </Button>
       </div>

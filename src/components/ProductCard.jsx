@@ -15,6 +15,21 @@ export const ProductCard = ({
 }) => {
   const [{ basket }, dispatch] = useStateValue();
 
+  const basketManipulation = () => {
+    const ADD_TO_BASKET = "ADD_TO_BASKET";
+    dispatch({
+      type: ADD_TO_BASKET,
+      item: {
+        id,
+        title,
+        image,
+        price,
+        rating,
+        imageDescription,
+      },
+    });
+  };
+
   return (
     <div className={styles.product}>
       <div className={styles.product__info}>
@@ -26,17 +41,7 @@ export const ProductCard = ({
         <StarRating rating={rating} />
       </div>
       <img src={image} alt={imageDescription} />
-      <Button
-        id={id}
-        title={title}
-        price={price}
-        rating={rating}
-        image={image}
-        imageDescription={imageDescription}
-        action={"ADD_TO_BASKET"}
-      >
-        Add To Basket
-      </Button>
+      <Button onClickAction={basketManipulation}>Add To Basket</Button>
     </div>
   );
 };
