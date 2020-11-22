@@ -12,6 +12,7 @@ const Button = ({
   price,
   rating,
   action,
+  width,
 }) => {
   const [{ basket }, dispatch] = useStateValue();
 
@@ -30,7 +31,12 @@ const Button = ({
   };
 
   return (
-    <button onClick={() => actionOnClick(action)} className={styles.button}>
+    <button
+      onClick={() => actionOnClick(action)}
+      className={`${styles.button} ${
+        width === "fullWidth" && styles.fullWidth
+      }`}
+    >
       {children}
     </button>
   );
