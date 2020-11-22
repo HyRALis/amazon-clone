@@ -1,0 +1,32 @@
+.input {
+  position: relative;
+  &Label {
+    display: block;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 19px;
+  }
+  &Field {
+    display: block;
+    background-color: #fff;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+    border-radius: 3px;
+    width: calc(100% - 18px);
+  }
+  &__PasswordToggle {
+    position: absolute;
+    bottom: 3px;
+    right: 2px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    outline: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
