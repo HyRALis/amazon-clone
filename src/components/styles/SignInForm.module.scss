@@ -1,0 +1,33 @@
+.signIn {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__logo {
+    margin: 20px auto;
+    object-fit: contain;
+    width: 100px;
+  }
+  &__container {
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    h1 {
+      font-weight: 600;
+      padding-left: 3px;
+      margin-bottom: 20px;
+    }
+  }
+  &__form {
+  }
+  &__Conditions {
+    margin: 15px 0px;
+    font-size: 14px;
+  }
+}
