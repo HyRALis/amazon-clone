@@ -6,9 +6,17 @@ import styles from "./styles/Header.module.scss";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../context/StateProvider";
+import { auth } from "../firebase";
 
 const Header = () => {
-  const [state, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+      alert("You have Signed Out! 😢  Hope to see you soon !");
+    }
+  };
 
   return (
     <div className={styles.header}>
@@ -24,10 +32,17 @@ const Header = () => {
         <SearchIcon className={styles.header__searchIcon} />
       </div>
       <div className={styles.header__nav}>
-        <Link to="/login">
-          <div className={styles.header__element}>
-            <span className={styles.header__optionLineOne}>Hello Guest</span>
-            <span className={styles.header__optionLineTwo}>Sign In</span>
+        <Link to={!user && "/login"}>
+          <div
+            onClick={handleAuthentication}
+            className={styles.header__element}
+          >
+            <span className={styles.header__optionLineOne}>
+              Hello {user ? `${user.email}` : "Guest"}
+            </span>
+            <span className={styles.header__optionLineTwo}>
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
         <div className={styles.header__element}>
@@ -44,7 +59,7 @@ const Header = () => {
             <span
               className={`${styles.header__optionLineTwo} ${styles.header__basketCount}`}
             >
-              {state.basket.length}
+              {basket.length}
             </span>
           </div>
         </Link>

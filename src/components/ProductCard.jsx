@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import styles from "./styles/ProductCard.module.scss";
 
 import { useStateValue } from "../context/StateProvider";
@@ -13,21 +15,27 @@ export const ProductCard = ({
   price,
   rating,
 }) => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  const history = useHistory();
 
   const basketManipulation = () => {
     const ADD_TO_BASKET = "ADD_TO_BASKET";
-    dispatch({
-      type: ADD_TO_BASKET,
-      item: {
-        id,
-        title,
-        image,
-        price,
-        rating,
-        imageDescription,
-      },
-    });
+    if (user !== null) {
+      dispatch({
+        type: ADD_TO_BASKET,
+        item: {
+          id,
+          title,
+          image,
+          price,
+          rating,
+          imageDescription,
+        },
+      });
+    } else {
+      history.push("/login");
+    }
   };
 
   return (

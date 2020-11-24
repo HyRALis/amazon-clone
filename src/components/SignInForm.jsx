@@ -1,13 +1,43 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import InputElement from "./InputElement";
 import Button from "./Button";
 import styles from "./styles/SignInForm.module.scss";
+import { auth } from "../firebase";
 
 const SignInForm = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const signIn = (e) => {
+    e.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        history.push("/");
+        alert(`You have succesfuly signed in!`);
+      })
+      .catch((err) => alert(err.message));
+  };
+  const register = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+          history.push("/");
+          alert(
+            `You have succesfuly Signed In! Please check ${email} for the verification email!`
+          );
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
   return (
     <div className={styles.signIn}>
       <Link to="/">
@@ -36,7 +66,9 @@ const SignInForm = () => {
             value={password}
             onChange={setPassword}
           />
-          <Button width="fullWidth">Sign In</Button>
+          <Button type={"submit"} width="fullWidth" onClickAction={signIn}>
+            Sign In
+          </Button>
 
           <p className={styles.signIn__Conditions}>
             By signing-in you agree to the My Amazon Clone Conditions of Use &
@@ -45,6 +77,10 @@ const SignInForm = () => {
           </p>
         </form>
       </div>
+      <p>New to Amazon?</p>
+      <Button type={"submit"} onClickAction={register}>
+        Create your Amazon Account
+      </Button>
     </div>
   );
 };
