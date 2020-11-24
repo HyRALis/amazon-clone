@@ -1,12 +1,13 @@
 import React from "react";
 import { useStateValue } from "../context/StateProvider";
+import { BasketAuthBox } from "./BasketAuthBox";
 import CheckoutProductCard from "./CheckoutProductCard";
 
 import styles from "./styles/Checkout.module.scss";
 import Subtotal from "./Subtotal";
 
 const Checkout = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
   return (
     <div className={styles.checkout}>
@@ -18,19 +19,23 @@ const Checkout = () => {
         />
         <div>
           <h2 className={styles.checkout__title}> Your Shoping Basket</h2>
-          <div className={styles.checkout__products}>
-            {basket.map((product, index) => (
-              <CheckoutProductCard
-                key={index}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                imageDescription={product.imageDescription}
-                rating={product.rating}
-                price={product.price}
-              />
-            ))}
-          </div>
+          {user ? (
+            <div className={styles.checkout__products}>
+              {basket.map((product, index) => (
+                <CheckoutProductCard
+                  key={index}
+                  id={product.id}
+                  image={product.image}
+                  title={product.title}
+                  imageDescription={product.imageDescription}
+                  rating={product.rating}
+                  price={product.price}
+                />
+              ))}
+            </div>
+          ) : (
+            <BasketAuthBox />
+          )}
         </div>
       </div>
       <div className={styles.checkout__right}>

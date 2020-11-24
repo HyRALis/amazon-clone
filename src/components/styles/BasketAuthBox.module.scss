@@ -1,0 +1,55 @@
+.basketAuthBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  &__illustration {
+    margin-top: 48px;
+    margin-right: 2%;
+    float: left;
+    min-height: 1px;
+    width: 31.948%;
+    color: #0f1111;
+    img {
+      vertical-align: top;
+      max-width: 100%;
+      border: none;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+    h1 {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: flex-start;
+    button {
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 910px) {
+  .basketAuthBox {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &__illustration {
+      margin-right: 0;
+      float: unset;
+      min-height: 1px;
+      width: 60%;
+    }
+  }
+}
